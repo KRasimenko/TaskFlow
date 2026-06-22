@@ -4,8 +4,7 @@
 
 | Файл | Описание |
 |------|----------|
-| `Kursovoy_TaskFlow.docx` | Готовая пояснительная записка (~60 стр.) |
-| `generate_coursework.py` | Скрипт пересборки Word-документа |
+| `Kursovoy_TaskFlow.docx` | Готовая пояснительная записка|
 | `plantuml/*.puml` | UML-диаграммы (PlantUML) |
 | `images/*.png` | Экспортированные диаграммы |
 
