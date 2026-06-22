@@ -1,0 +1,43 @@
+@startuml navigation
+skinparam shadowing false
+skinparam defaultFontName "DejaVu Sans"
+skinparam dpi 130
+
+title Навигация между экранами TaskFlow
+
+state "Вход" as Login
+state "Регистрация" as SignUp
+state "Главная" as Home
+state "Календарь" as Schedule
+state "Избранное" as Favorites
+state "Уведомления" as Notifications
+state "Профиль" as Profile
+state "Детали задачи" as Detail
+state "Настройки" as Settings
+state "Помощь" as Help
+
+[*] --> Login
+Login --> Home : вход
+Login --> SignUp : регистрация
+SignUp --> Home : создание аккаунта
+SignUp --> Login : назад
+
+Home --> Detail : открыть / создать
+Home --> Notifications : колокольчик
+Schedule --> Detail
+Favorites --> Detail
+Notifications --> Detail
+
+Home --> Schedule : нижнее меню
+Home --> Favorites : нижнее меню
+Home --> Profile : нижнее меню
+
+Profile --> Settings
+Profile --> Help
+Profile --> Login : выход
+
+Settings --> Profile : назад
+Help --> Profile : назад
+Detail --> Home : сохранить
+
+@enduml

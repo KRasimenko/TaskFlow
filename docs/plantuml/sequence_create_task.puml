@@ -1,0 +1,27 @@
+@startuml sequence_create_task
+skinparam shadowing false
+skinparam defaultFontName "DejaVu Sans"
+skinparam dpi 130
+
+title Создание задачи - диаграмма последовательности
+
+actor "Пользователь" as User
+participant "HomeFragment" as HF
+participant "MainActivity" as MA
+participant "TaskDetailFragment" as TD
+participant "TaskRepository" as TR
+database "SharedPreferences" as SP
+
+User -> MA : нажатие FAB (+)
+MA -> TD : navigate(new)
+User -> TD : заполнение формы
+User -> TD : нажатие «Создать»
+TD -> TR : createTask()
+TR -> SP : saveTasks(JSON)
+TR --> TD : Task
+TD -> HF : navigateUp()
+HF -> TR : getTasks()
+TR --> HF : список задач
+HF --> User : обновление UI
+
+@enduml

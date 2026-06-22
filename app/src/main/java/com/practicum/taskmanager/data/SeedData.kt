@@ -1,0 +1,61 @@
+package com.practicum.taskmanager.data
+
+object SeedData {
+    val tasks: List<Task> = listOf(
+        Task(
+            id = "1",
+            title = "Подготовить отчёт по проекту",
+            description = "Собрать метрики за квартал, оформить слайды и отправить команде до пятницы.",
+            category = "Работа",
+            priority = TaskPriority.HIGH,
+            status = TaskStatus.IN_PROGRESS,
+            dueDate = "2026-06-06",
+            starred = true,
+            createdAt = "2026-06-01",
+        ),
+        Task(
+            id = "2",
+            title = "Созвон с дизайнером",
+            description = "Обсудить макеты главного экрана и календаря задач.",
+            category = "Встречи",
+            priority = TaskPriority.MEDIUM,
+            status = TaskStatus.TODO,
+            dueDate = "2026-06-04",
+            starred = false,
+            createdAt = "2026-06-02",
+        ),
+        Task(
+            id = "3",
+            title = "Купить продукты",
+            description = "Молоко, яйца, хлеб, овощи для ужина.",
+            category = "Личное",
+            priority = TaskPriority.LOW,
+            status = TaskStatus.TODO,
+            dueDate = "2026-06-04",
+            starred = false,
+            createdAt = "2026-06-03",
+        ),
+        Task(
+            id = "4",
+            title = "Обновить документацию API",
+            description = "Добавить примеры запросов и описание ошибок.",
+            category = "Работа",
+            priority = TaskPriority.MEDIUM,
+            status = TaskStatus.DONE,
+            dueDate = "2026-06-02",
+            starred = true,
+            createdAt = "2026-05-28",
+        ),
+        Task(
+            id = "5",
+            title = "Тренировка",
+            description = "Кардио 40 минут + растяжка.",
+            category = "Здоровье",
+            priority = TaskPriority.LOW,
+            status = TaskStatus.TODO,
+            dueDate = "2026-06-05",
+            starred = false,
+            createdAt = "2026-06-03",
+        ),
+    )
+}

@@ -1,0 +1,27 @@
+@startuml activity_auth
+skinparam shadowing false
+skinparam defaultFontName "DejaVu Sans"
+skinparam dpi 130
+
+title Диаграмма деятельности - вход пользователя
+
+start
+:Запуск приложения;
+if (Пользователь авторизован?) then (да)
+  :Переход на главный экран;
+  :Отображение нижней навигации;
+else (нет)
+  :Экран входа;
+  if (Действие) then (Вход)
+    :Ввод email;
+    :Сохранение сессии;
+  else (Регистрация)
+    :Экран регистрации;
+    :Ввод имени и email;
+    :Создание профиля;
+  endif
+  :Переход на главный экран;
+endif
+stop
+
+@enduml

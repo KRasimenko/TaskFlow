@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="radius_frame">30dp</dimen>
+    <dimen name="radius_card">17dp</dimen>
+    <dimen name="radius_pill">24dp</dimen>
+    <dimen name="radius_chip">13dp</dimen>
+    <dimen name="page_padding_h">20dp</dimen>
+    <dimen name="page_padding_v">16dp</dimen>
+    <dimen name="fab_margin">24dp</dimen>
+</resources>

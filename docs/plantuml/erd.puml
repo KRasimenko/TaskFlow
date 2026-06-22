@@ -1,0 +1,55 @@
+@startuml erd
+skinparam shadowing false
+skinparam defaultFontName "DejaVu Sans"
+skinparam dpi 130
+skinparam linetype ortho
+
+title ER-диаграмма данных TaskFlow (SharedPreferences + JSON)
+
+entity "Пользователь\n(User)" as user {
+  * **email** : TEXT <<PK>>
+  --
+  name : TEXT
+}
+
+entity "Задача\n(Task)" as task {
+  * **id** : TEXT <<PK>>
+  --
+  title : TEXT
+  description : TEXT
+  category : TEXT
+  priority : TEXT
+  status : TEXT
+  due_date : TEXT
+  starred : BOOLEAN
+  created_at : TEXT
+}
+
+entity "Хранилище\nSharedPreferences" as prefs {
+  * **taskflow_prefs** : FILE
+}
+
+entity "Запись tasks" as rec_tasks {
+  * **key** : TEXT <<PK>>
+  --
+  value : JSON (List<Task>)
+}
+
+entity "Запись user" as rec_user {
+  * **key** : TEXT <<PK>>
+  --
+  value : JSON (User)
+}
+
+prefs ||--|| rec_tasks : содержит
+prefs ||--o| rec_user : содержит
+rec_tasks ||--o{ task : сериализация
+rec_user ||--|| user : сериализация
+
+note right of task
+  Логическая модель данных.
+  Физически задачи хранятся
+  как JSON-массив в prefs.
+end note
+
+@enduml

@@ -1,0 +1,34 @@
+@startmindmap user_stories
+skinparam defaultFontName "DejaVu Sans"
+skinparam dpi 130
+
+title User Stories - TaskFlow
+
+* TaskFlow
+
+** Аутентификация
+*** US-01\nВход по email
+*** US-02\nРегистрация
+
+** Главный экран
+*** US-03\nСтатистика задач
+*** US-04\nПоиск
+*** US-05\nФильтры по статусу
+
+** Задачи
+*** US-06\nСоздание
+*** US-07\nРедактирование
+*** US-08\nУдаление
+*** US-09\nПриоритет
+*** US-10\nСтатус
+
+** Организация
+*** US-11\nКалендарь
+*** US-12\nИзбранное
+*** US-13\nУведомления
+
+** Профиль
+*** US-14\nПрофиль
+*** US-15\nВыход
+
+@endmindmap

@@ -1,0 +1,42 @@
+@startuml component
+skinparam shadowing false
+skinparam defaultFontName "DejaVu Sans"
+skinparam dpi 130
+
+title Диаграмма компонентов - TaskFlow
+
+package "Слой представления" {
+  [MainActivity] as MA
+  [Фрагменты UI] as FR
+  [Адаптеры RecyclerView] as AD
+  [View Binding] as VB
+}
+
+package "Слой данных" {
+  [TaskRepository] as REPO
+  [Модели Task / User] as MODEL
+  [DateUtils / TaskUiHelper] as UTIL
+}
+
+package "Хранение" {
+  [SharedPreferences] as PREFS
+  [Gson JSON] as JSON
+}
+
+package "Android Framework" {
+  [Navigation Component] as NAV
+  [Material Components] as MAT
+}
+
+MA --> FR
+FR --> AD
+FR --> VB
+FR --> REPO
+FR --> NAV
+REPO --> MODEL
+REPO --> UTIL
+REPO --> PREFS
+PREFS --> JSON
+FR --> MAT
+
+@enduml

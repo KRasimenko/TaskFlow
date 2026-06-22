@@ -1,0 +1,86 @@
+@startuml class_diagram
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam defaultFontName "DejaVu Sans"
+skinparam dpi 130
+
+title Диаграмма классов - TaskFlow
+
+package "data" {
+  class Task {
+    +id: String
+    +title: String
+    +description: String
+    +category: String
+    +priority: TaskPriority
+    +status: TaskStatus
+    +dueDate: String
+    +starred: Boolean
+    +createdAt: String
+  }
+
+  enum TaskPriority {
+    LOW
+    MEDIUM
+    HIGH
+  }
+
+  enum TaskStatus {
+    TODO
+    IN_PROGRESS
+    DONE
+  }
+
+  class User {
+    +name: String
+    +email: String
+  }
+
+  class TaskRepository {
+    -prefs: SharedPreferences
+    -gson: Gson
+    -tasks: MutableList<Task>
+    -user: User?
+    +getTasks(): List<Task>
+    +login(email, name)
+    +logout()
+    +createTask(...)
+    +updateTask(id, patch)
+    +deleteTask(id)
+    +toggleStar(id)
+    +getNotifications()
+  }
+
+  class SeedData {
+    +tasks: List<Task>
+  }
+
+  Task --> TaskPriority
+  Task --> TaskStatus
+  TaskRepository --> Task
+  TaskRepository --> User
+  TaskRepository ..> SeedData
+}
+
+package "ui" {
+  class MainActivity
+  class HomeFragment
+  class TaskDetailFragment
+  class ScheduleFragment
+  class TaskAdapter
+  class LoginFragment
+
+  MainActivity --> HomeFragment
+  HomeFragment --> TaskAdapter
+  HomeFragment ..> TaskRepository
+  TaskDetailFragment ..> TaskRepository
+  LoginFragment ..> TaskRepository
+}
+
+class TaskManagerApp {
+  +repository: TaskRepository
+}
+
+TaskManagerApp --> TaskRepository
+
+@enduml
