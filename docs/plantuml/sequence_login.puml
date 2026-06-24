@@ -1,0 +1,27 @@
+@startuml sequence_login
+skinparam shadowing false
+skinparam defaultFontName "DejaVu Sans"
+skinparam dpi 130
+
+title Авторизация JWT — диаграмма последовательности
+
+actor "Пользователь" as User
+participant "LoginFragment" as LF
+participant "AuthController" as AC
+participant "AuthService" as AS
+participant "UserRepository" as UR
+database "БД" as DB
+
+User -> LF : email + пароль
+LF -> AC : POST /api/auth/login
+AC -> AS : authenticate()
+AS -> UR : findByEmail()
+UR -> DB : SELECT user
+DB --> UR : User
+AS -> AS : validate + JWT
+AS --> AC : token + user
+AC --> LF : 200 OK + JWT
+LF -> LF : saveToken()
+LF --> User : главный экран
+
+@enduml

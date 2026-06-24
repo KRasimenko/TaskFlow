@@ -1,0 +1,33 @@
+@startuml buc
+skinparam shadowing false
+skinparam defaultFontName "DejaVu Sans"
+skinparam dpi 130
+
+title BUC-диаграмма (бизнес-прецеденты)
+
+left to right direction
+
+actor "Сотрудник" as Employee
+actor "Студент" as Student
+actor "Менеджер" as Manager
+
+rectangle "Бизнес-процесс планирования задач" {
+  usecase "Спланировать рабочий день" as UC1
+  usecase "Контролировать дедлайны" as UC2
+  usecase "Распределить задачи команды" as UC3
+  usecase "Отметить выполнение" as UC4
+  usecase "Анализировать загрузку" as UC5
+}
+
+Employee --> UC1
+Employee --> UC2
+Employee --> UC4
+Student --> UC1
+Student --> UC2
+Student --> UC4
+Manager --> UC3
+Manager --> UC5
+UC3 ..> UC1 : <<include>>
+UC5 ..> UC2 : <<extend>>
+
+@enduml

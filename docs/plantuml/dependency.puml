@@ -1,0 +1,30 @@
+@startuml dependency
+skinparam shadowing false
+skinparam defaultFontName "DejaVu Sans"
+skinparam dpi 130
+
+title Диаграмма зависимостей модулей
+
+package "task-manager-android" {
+  [app module] as APP
+}
+
+package "taskflow-server" {
+  [api] as API
+  [service] as SVC
+  [domain] as DOM
+  [persistence] as PERS
+}
+
+APP ..> API : HTTPS/JSON
+API --> SVC
+SVC --> DOM
+SVC --> PERS
+APP ..> PERS : offline cache\n(SharedPreferences)
+
+note right of APP
+  Зависимости Gradle:
+  Navigation, Material, Gson, Retrofit
+end note
+
+@enduml

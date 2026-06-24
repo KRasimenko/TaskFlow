@@ -1,0 +1,61 @@
+@startuml idef0
+skinparam shadowing false
+skinparam defaultFontName "DejaVu Sans"
+skinparam dpi 150
+skinparam linetype ortho
+skinparam rectangle {
+  BackgroundColor white
+  BorderColor black
+}
+
+title IDEF0 A-0 — Управление личными задачами (TaskFlow)
+
+' Управление (сверху → в блок)
+together {
+  () "Бизнес-правила\nприложения" as CTRL1
+  () "Стандарты REST,\nJWT, OpenAPI" as CTRL2
+  () "Архитектура\nPCMEF" as CTRL3
+}
+
+' Центральный блок A-0
+rectangle "A0\nУправление\nличными\nзадачами" as A0
+
+' Входы (слева → в блок)
+() "Учётные данные\n(email, пароль)" as IN1
+() "Данные задачи\n(название, срок,\nприоритет, категория)" as IN2
+
+' Выходы (из блока → вправо)
+() "Список задач\nи календарь" as OUT1
+() "Уведомления\nо дедлайнах" as OUT2
+() "Отчёт о\nвыполнении" as OUT3
+
+' Механизмы (снизу → в блок)
+together {
+  () "Android-клиент\nTaskFlow" as MECH1
+  () "Сервер\nSpring Boot" as MECH2
+  () "СУБД\nPostgreSQL/H2" as MECH3
+  () "JWT-сервис\nаутентификации" as MECH4
+}
+
+IN1 -right-> A0
+IN2 -right-> A0
+CTRL1 -down-> A0
+CTRL2 -down-> A0
+CTRL3 -down-> A0
+A0 -right-> OUT1
+A0 -right-> OUT2
+A0 -right-> OUT3
+MECH1 -up-> A0
+MECH2 -up-> A0
+MECH3 -up-> A0
+MECH4 -up-> A0
+
+legend right
+  |= ICOM |= Направление |
+  | I | Входы — слева |
+  | C | Управление — сверху |
+  | O | Выходы — справа |
+  | M | Механизмы — снизу |
+endlegend
+
+@enduml

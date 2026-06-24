@@ -1,0 +1,26 @@
+@startuml sequence_delete_task
+skinparam shadowing false
+skinparam defaultFontName "DejaVu Sans"
+skinparam dpi 130
+
+title Удаление задачи — диаграмма последовательности
+
+actor "Пользователь" as User
+participant "TaskDetailFragment" as TD
+participant "TaskController" as TC
+participant "TaskService" as TS
+participant "TaskRepository" as TR
+database "БД" as DB
+
+User -> TD : подтверждение удаления
+TD -> TC : DELETE /api/tasks/{id}\nAuthorization: Bearer
+TC -> TS : deleteTask(id, userId)
+TS -> TR : findByIdAndUserId()
+TR -> DB : DELETE
+DB --> TR : ok
+TR --> TS : deleted
+TS --> TC : 204
+TC --> TD : success
+TD --> User : возврат на главный экран
+
+@enduml

@@ -1,0 +1,49 @@
+@startuml pcmef
+skinparam shadowing false
+skinparam defaultFontName "DejaVu Sans"
+skinparam dpi 130
+
+title Архитектура PCMEF — TaskFlow
+
+package "Presentation" {
+  [Android UI\n(Fragments)] as UI
+  [REST Controllers] as REST
+}
+
+package "Control" {
+  [TaskService] as TS
+  [AuthService] as AS
+  [SyncMediator] as MED
+}
+
+package "Entity" {
+  [Task] as ET
+  [User] as EU
+  [DTO / API Models] as DTO
+}
+
+package "Foundation" {
+  [TaskRepository\n(JPA)] as TR
+  [UserRepository] as UR
+  [SharedPreferences\nCache] as CACHE
+  [JWT Provider] as JWT
+}
+
+package "Foundation\n(Persistence)" {
+  database "PostgreSQL/H2" as DB
+}
+
+UI --> MED
+REST --> AS
+REST --> TS
+MED --> TS
+TS --> ET
+AS --> EU
+TS --> TR
+AS --> UR
+TR --> DB
+UR --> DB
+UI ..> CACHE
+MED ..> REST
+
+@enduml

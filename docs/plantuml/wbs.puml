@@ -1,0 +1,29 @@
+@startwbs wbs
+skinparam defaultFontName "DejaVu Sans"
+
+title WBS — TaskFlow
+
+* TaskFlow
+** 1. Инициация
+*** Паспорт проекта
+*** IDEF0 / BUC
+** 2. Требования
+*** Use Case
+*** Глоссарий
+** 3. Архитектура
+*** PCMEF
+*** ADR
+** 4. База данных
+*** ER / DDL
+** 5. Детальное проектирование
+*** Sequence
+*** Class
+** 6. Реализация
+*** Android
+*** Spring Boot
+** 7. Качество
+*** JUnit / JaCoCo
+** 8. Документация
+*** ПЗ / README
+
+@endwbs
